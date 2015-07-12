@@ -1,0 +1,101 @@
+.testboard {
+	border: solid 1px;
+	border-color: red;
+}
+
+.container-fluid {
+	height: calc(100% - 51px);
+	overflow: hidden;
+}
+
+.modal-header {
+	background: #f0f0f0;
+}
+
+.margintopzero {
+    margin-top: 0px;
+}
+
+.rowlayoutboard {
+	border-top: 1px solid #e7e7e7;
+	height: 100%
+}
+
+.collayoutboard {
+	border-left: 1px solid #e7e7e7;
+	padding: 0px;
+	height: 100%;
+}
+
+.vcenter {
+	display: flex;
+	align-items: center;
+}
+
+.vtop {
+	display: flex;
+	align-items: top;
+}
+
+.divscroll {
+	position: static;
+	overflow: auto;
+	height: 100%;
+}
+
+.divtophr {
+	height: auto;
+	overflow: hidden;
+	/* min-height: 30px; */
+	border-top: dashed 1px #e7e7e7;
+	padding: 10px 0px 10px 0px;
+}
+
+.divhrnone {
+	border: none;
+}
+
+.thcehck {
+	width: 12px;
+}
+
+.thwidth {
+	width: 100px;
+}
+
+#testRunForm > div.row-fluid.divtophr:hover,
+#casecontent > div.row-fluid.divtophr:hover {
+	background: #f5f5f5;
+}
+
+.modalbody {
+	position: static;
+	overflow: auto;
+	max-height: 460px;
+}
+
+.rowhilight {
+	background-color: #D2EBF2 !important;
+}
+
+.block {
+	background-color: #FDF329;
+}
+
+.editable-click:hover {
+	background: #D2EBF2;
+}
+
+.inlineformwidth {
+	width: 100%;
+}
+
+hr {
+	border-top: 1px solid #e5e5e5;
+}
+
+html, body {height: 100%;}
+
+th {
+	text-align: center;
+}
