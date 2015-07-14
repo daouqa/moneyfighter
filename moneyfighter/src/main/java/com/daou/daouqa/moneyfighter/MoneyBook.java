@@ -2,6 +2,8 @@ package com.daou.daouqa.moneyfighter;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Iterator;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
@@ -49,7 +51,9 @@ public class MoneyBook extends HttpServlet {
 		Session session	= HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
 		MoneyBook moneyBook	= new MoneyBook();
-		moneyBook.saveContact("Jiya");
+		moneyBook.saveContact("aaa");
+		moneyBook.saveContact("bbb");
+		moneyBook.listContact();
 		
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
@@ -65,7 +69,9 @@ public class MoneyBook extends HttpServlet {
 	
 	public Integer saveContact(String contactName) {
 		Session session	= HibernateUtil.getSessionFactory().openSession();
-		session.beginTransaction();
+		System.out.println(session.isConnected());
+		System.out.println(session.isOpen());
+		//session.beginTransaction();
 		Integer contactId		= null;
 		Transaction transaction	= null;
 		try {
@@ -82,6 +88,26 @@ public class MoneyBook extends HttpServlet {
 		}
 		return contactId;
 		
+	}
+	
+	public void listContact() {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction transaction = null;
+		try {
+			transaction = session.beginTransaction();
+			@SuppressWarnings("unchecked")
+			List<Contact> contactList = session.createQuery("from Contact").list();
+			for (Iterator<Contact> iterator = contactList.iterator(); iterator.hasNext();) {
+				Contact contact = (Contact) iterator.next();
+				System.out.printf("id=%d, name=%s\n", contact.getContactId(), contact.getName());
+			}
+			transaction.commit();
+		} catch (HibernateException e) {
+			transaction.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
 	}
 
 }
