@@ -1,2 +1,5 @@
 /target/
 /bin/
+/test.log
+/test.properties
+/test.script
