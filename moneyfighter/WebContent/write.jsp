@@ -8,11 +8,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/simple-sidebar.css" rel="stylesheet">
-<script src="js/bootstrap.min.js"></script>
 <script src="js/jquery-2.1.4.min.js"></script>
-<script src="//code.jquery.com/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="css/datepicker.css">
-<link rel="stylesheet" href="css/bootstrap.css">
 <script src="js/bootstrap-datepicker.js"></script>
 <script type="text/javascript">
 	// When the document is ready
