@@ -1,1 +1,4 @@
 /target/
+/test.log
+/test.properties
+/test.script
