@@ -166,13 +166,23 @@ table#t02 th {
 	                            list.add(t3);
 	                            list.add(t4);
 	                            
+	                            int incomesum=0;
+                   		  		int outcomesum=0;
+                   		  		int balance;
+ 
 	                            //list배열의 데이터를 테이블에 출력 
 	                   		  	for(int i=0; i < list.size(); i++) {
 	                   		  		String str;
-	                   		  		if(list.get(i).get("type")=="income")
+	                   		  		
+	                   		  		if(list.get(i).get("type")=="income") {
 	                   		  			str="수입";
-	                   		  		else
+	                   		  			incomesum+=Integer.parseInt(list.get(i).get("price").toString());
+	                   		  			
+	                   		  		}
+	                   		  		else {
 	                   		  			str="지출";
+	                   		  		    outcomesum+=Integer.parseInt(list.get(i).get("price").toString());
+	                   		  		}
 	              	            %>
 								 <tr>
 									<td><%= list.get(i).get("date")%></td>
@@ -185,19 +195,23 @@ table#t02 th {
 	                        		}
 								%>
 							</table>
+							<%
+								if(incomesum>=outcomesum) balance=incomesum-outcomesum;
+               		  			else balance=0; 
+							%>
 							<br> <br>
 							<table id="t02" align="right">
 								<tr>
 									<th>수입 합계</th>
-									<td></td>
+									<td><%= incomesum %> 원</td>
 								</tr>
 								<tr>
 									<th>지출 합계</th>
-									<td></td>
+									<td><%= outcomesum %> 원</td>
 								</tr>
 								<tr>
-									<th>잔액 합계</th>
-									<td></td>
+									<th>잔액</th>
+									<td><%= balance %> 원</td>
 								</tr>
 							</table>
 
