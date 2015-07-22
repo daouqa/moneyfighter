@@ -51,6 +51,21 @@
   		<artifactId>jta</artifactId>
   		<version>1.1</version>
   	</dependency>
+  	<dependency>
+  		<groupId>joda-time</groupId>
+  		<artifactId>joda-time</artifactId>
+  		<version>2.7</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>joda-time</groupId>
+  		<artifactId>joda-time-hibernate</artifactId>
+  		<version>1.4</version>
+  	</dependency>
+  	<dependency>
+		<groupId>org.jadira.usertype</groupId>
+		<artifactId>usertype.extended</artifactId>
+		<version>4.0.0.GA</version>
+	</dependency>
   </dependencies>
   <build>
   	<plugins>

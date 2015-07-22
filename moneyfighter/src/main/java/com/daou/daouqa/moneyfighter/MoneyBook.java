@@ -18,6 +18,7 @@ import org.hibernate.Session;
 
 import com.daou.daouqa.hibernate.util.HibernateUtil;
 import com.daou.douqa.hibernate.model.Contact;
+import com.daou.douqa.hibernate.model.MoneyBookModel;
 
 /**
  * Servlet implementation class MoneyBook
@@ -45,9 +46,6 @@ public class MoneyBook extends HttpServlet {
 		response.setContentType(CONTENTTYPE_JSON);
 		PrintWriter pw	= response.getWriter();
 		
-		String date	= request.getParameter("date");
-		LOGGER.info("date:" + date);
-		
 		Enumeration<String>	parameterEnum	= request.getParameterNames();
 		String parameter					= null;
 		
@@ -55,16 +53,26 @@ public class MoneyBook extends HttpServlet {
 			parameter	= parameterEnum.nextElement();
 			LOGGER.info(parameter + "=" + request.getParameter(parameter));
 		}
+		
+		// 파라미터 가져오기
+		// date: 입력날짜
+		// type: income, outcome
+		// category: 항목명
+		// price: 비용
+		// note: 비고
+		String date		= request.getParameter("date");
+		String type		= request.getParameter("type");
+		String category	= request.getParameter("category");
+		String price	= request.getParameter("price");
+		String note		= request.getParameter("note");
 		//LOGGER.info(this.getClass().getResource("/aaa.txt").getPath());
 		
 		// Test Code Start - Start
-		System.out.println("Maven + Hibernate + HSQL");
 		Session session	= HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
 		MoneyBook moneyBook	= new MoneyBook();
-		moneyBook.saveContact("aaa");
-		moneyBook.saveContact("bbb");
-		//moneyBook.listContact();
+		moneyBook.saveMoneybook(date, type, category, price, note);
+		moneyBook.listMoneybook();
 		
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
@@ -78,18 +86,22 @@ public class MoneyBook extends HttpServlet {
 		doGet(request, response);
 	}
 	
-	public Integer saveContact(String contactName) {
+	public Integer saveMoneybook(String date, String type, String category, String price, String note) {
 		Session session	= HibernateUtil.getSessionFactory().openSession();
-		System.out.println(session.isConnected());
-		System.out.println(session.isOpen());
+		//System.out.println(session.isConnected());
+		//System.out.println(session.isOpen());
 		//session.beginTransaction();
-		Integer contactId		= null;
+		Integer recordId		= null;
 		Transaction transaction	= null;
 		try {
-			transaction		= session.beginTransaction();
-			Contact contact	= new Contact();
-			contact.setName(contactName);
-			contactId	= (Integer) session.save(contact);
+			transaction					= session.beginTransaction();
+			MoneyBookModel moneyBook	= new MoneyBookModel();
+			moneyBook.setDate(date);
+			moneyBook.setType(type);
+			moneyBook.setCategory(category);
+			moneyBook.setPrice(Integer.parseInt(price));
+			moneyBook.setNote(note);
+			recordId	= (Integer) session.save(moneyBook);
 			transaction.commit();
 		} catch (HibernateException e) {
 			transaction.rollback();
@@ -97,20 +109,26 @@ public class MoneyBook extends HttpServlet {
 		} finally {
 			session.close();
 		}
-		return contactId;
+		return recordId;
 		
 	}
 	
-	public void listContact() {
+	public void listMoneybook() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction transaction = null;
 		try {
 			transaction = session.beginTransaction();
 			@SuppressWarnings("unchecked")
-			List<Contact> contactList = session.createQuery("from Contact").list();
-			for (Iterator<Contact> iterator = contactList.iterator(); iterator.hasNext();) {
-				Contact contact = (Contact) iterator.next();
-				System.out.printf("id=%d, name=%s\n", contact.getContactId(), contact.getName());
+			List<MoneyBookModel> moneyBookList = session.createQuery("from MoneyBookModel").list();
+			for (Iterator<MoneyBookModel> iterator = moneyBookList.iterator(); iterator.hasNext();) {
+				MoneyBookModel moneyBook = (MoneyBookModel) iterator.next();
+				System.out.printf("id=%d, date=%s, type=%s, category=%s, price=%d, note=%s\n", 
+						moneyBook.getRecordId(),
+						moneyBook.getDate(),
+						moneyBook.getType(),
+						moneyBook.getCategory(),
+						moneyBook.getPrice(),
+						moneyBook.getNote());
 			}
 			transaction.commit();
 		} catch (HibernateException e) {
