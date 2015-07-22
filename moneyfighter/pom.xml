@@ -47,11 +47,6 @@
   		<version>2.3.3</version>
   	</dependency>
   	<dependency>
-  		<groupId>javax.persistence</groupId>
-  		<artifactId>persistence-api</artifactId>
-  		<version>1.0.2</version>
-  	</dependency>
-  	<dependency>
   		<groupId>javax.transaction</groupId>
   		<artifactId>jta</artifactId>
   		<version>1.1</version>
@@ -63,8 +58,19 @@
   			<artifactId>maven-war-plugin</artifactId>
   			<version>2.4</version>
   			<configuration>
-  				<warsourcediractory>WebContent</warsourcediractory>
+  				<warSourceDirectory>WebContent</warSourceDirectory>
   				<webxml>WebContent/WEB-INF/web.xml</webxml>
+  			</configuration>
+  		</plugin>
+  		<plugin>
+  			<groupId>org.codehaus.mojo</groupId>
+  			<artifactId>tomcat-maven-plugin</artifactId>
+  			<version>1.1</version>
+  			<configuration>
+  				<url>http://52.69.190.23:8080/manager/text</url>
+  				<path>/moneyfighter</path>
+  				<username>tomcat</username>
+  				<password>tomcat</password>
   			</configuration>
   		</plugin>
   	</plugins>
@@ -74,4 +80,5 @@
   	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   	<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
   </properties>
+  <packaging>war</packaging>
 </project>
