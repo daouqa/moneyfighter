@@ -27,18 +27,19 @@
 		alert("입력되었습니다~~~~~~~~~~~~");
 		var mForm = document.write; // form의 값을 가져오기 위함
 		var obj = new Object(); // JSON형식으로 변환 할 오브젝트
-		obj.date = mForm.datepicker.value;
-		if(mForm.type.value=="수입") obj.type = "income";
-		else obj.type="outcome";
-		obj.category = mForm.category.value;
-		obj.price = mForm.price.value;
-		obj.note = mForm.note.value;
+		obj['date'] = mForm.datepicker.value;
+		if(mForm.type.value=="수입") obj['type'] = "income";
+		else obj['type']="outcome";
+		obj['category'] = mForm.category.value;
+		obj['price'] = mForm.price.value;
+		obj['note'] = mForm.note.value;
 
+		console.log(obj);
 		var json_data = JSON.stringify(obj); // form의 값을 넣은 오브젝트를 JSON형식으로 변환
 		var request = $.ajax({
-			url : "",
+			url : "MoneyBook",
 			type : "POST",
-			data : json_data,
+			data : obj,
 			dataType : "json"
 		});
 	}

@@ -20,5 +20,6 @@
 		<!--create the database schema on startup if required -->
 		<property name="hbm2ddl.auto">update</property>
 		<mapping class="com.daou.douqa.hibernate.model.Contact"></mapping>
+		<mapping class="com.daou.douqa.hibernate.model.MoneyBook"></mapping>
 	</session-factory>
 </hibernate-configuration>

@@ -2,6 +2,7 @@ package com.daou.daouqa.moneyfighter;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Logger;
@@ -44,6 +45,16 @@ public class MoneyBook extends HttpServlet {
 		response.setContentType(CONTENTTYPE_JSON);
 		PrintWriter pw	= response.getWriter();
 		
+		String date	= request.getParameter("date");
+		LOGGER.info("date:" + date);
+		
+		Enumeration<String>	parameterEnum	= request.getParameterNames();
+		String parameter					= null;
+		
+		while (parameterEnum.hasMoreElements()) {
+			parameter	= parameterEnum.nextElement();
+			LOGGER.info(parameter + "=" + request.getParameter(parameter));
+		}
 		//LOGGER.info(this.getClass().getResource("/aaa.txt").getPath());
 		
 		// Test Code Start - Start
@@ -53,7 +64,7 @@ public class MoneyBook extends HttpServlet {
 		MoneyBook moneyBook	= new MoneyBook();
 		moneyBook.saveContact("aaa");
 		moneyBook.saveContact("bbb");
-		moneyBook.listContact();
+		//moneyBook.listContact();
 		
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
