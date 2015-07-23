@@ -6,7 +6,6 @@ import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Logger;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,9 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.hibernate.Transaction;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-
 import com.daou.daouqa.hibernate.util.HibernateUtil;
-import com.daou.douqa.hibernate.model.Contact;
 import com.daou.douqa.hibernate.model.MoneyBookModel;
 
 /**
