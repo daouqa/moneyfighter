@@ -66,6 +66,11 @@
 		<artifactId>usertype.extended</artifactId>
 		<version>4.0.0.GA</version>
 	</dependency>
+	<dependency> 
+    	<groupId>xml-apis</groupId>
+    	<artifactId>xml-apis</artifactId>
+    	<version>1.4.01</version>
+	</dependency>
   </dependencies>
   <build>
   	<plugins>
