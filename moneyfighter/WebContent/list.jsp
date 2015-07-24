@@ -2,7 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.*,java.text.*"%>
 <%@ page import="org.json.simple.JSONObject" %>
+<%@ page import="org.json.simple.*" %>
 <%@ page import="org.json.simple.JSONArray" %>
+<%@ page import="com.daou.douqa.hibernate.model.MoneyBookModel" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -99,8 +101,7 @@ table#t02 th {
 							<% 	Date d1 = new Date();
 	                            SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
 	                            String strdate = sdf1.format(d1);
-	                            
-	                         
+	
 	                         %>
 							<p>
 								<input type="text" style="text-align: center" size="15"
@@ -119,53 +120,16 @@ table#t02 th {
 									<th style="width: 15%">금액</th>
 									<th style="width: 30%">비고</th>
 								</tr>
-								
 								<%
 								
 								ArrayList<JSONObject> list = new ArrayList<JSONObject>();
 								
 	                            
-								//과장님이 json오브젝트 넘겨주시면 주석제거 
-								/*JSONObject listjson = new JSONObject();
-								  listjson = json.getJSONObject("");*/
+								
+								// JSONObject listjson = new JSONObject();
+								// listjson = json.getJSONObject("");
 	                          
-	                        	//json오브젝트 받기전에 테스트할 데이터 임의로 입력
-	                        	JSONObject t1 = new JSONObject();
-	                        	t1.put("date","2015-07-16");
-	                        	t1.put("type","outcome");
-	                        	t1.put("category","커피");
-	                        	t1.put("price","10000");
-	                        	t1.put("note","커피빈");
-
-	                        	//json오브젝트 받기전에 테스트할 데이터 임의로 입력
-	                            JSONObject t2 = new JSONObject();
-	                        	t2.put("date","2015-07-16");
-	                        	t2.put("type","income");
-	                        	t2.put("category","월급");
-	                        	t2.put("price","1080000");
-	                        	t2.put("note","7월 월급");
-
-	                        	//json오브젝트 받기전에 테스트할 데이터 임의로 입력
-	                            JSONObject t3 = new JSONObject();
-	                        	t3.put("date","2015-07-16");
-	                        	t3.put("type","outcome");
-	                        	t3.put("category","식비");
-	                        	t3.put("price","17000");
-	                        	t3.put("note","바울아저씨");
 	                        	
-	                        	JSONObject t4 = new JSONObject();
-	                        	t4.put("date","2015-07-16");
-	                        	t4.put("type","outcome");
-	                        	t4.put("category","보험");
-	                        	t4.put("price","250000");
-	                        	t4.put("note","7월 보험비");
-	
-	                            //json오브젝트를 list배열에 추가
-	                            list.add(t1);
-	                            list.add(t2);
-	                            list.add(t3);
-	                            list.add(t4);
-	                            
 	                            int incomesum=0;
                    		  		int outcomesum=0;
                    		  		int balance;
